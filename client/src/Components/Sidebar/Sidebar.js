@@ -27,8 +27,11 @@ export default class Sidebar extends React.Component {
     return (
       <div>
         <RaisedButton
-          label="Toggle Drawer"
+          label="Profile"
           onClick={this.handleToggle}
+          style={{
+            float: 'right'
+          }}
         />
         <Drawer 
           docked={false}
@@ -39,6 +42,7 @@ export default class Sidebar extends React.Component {
           <AppBar 
             title="Profile" 
             onLeftIconButtonClick={this.handleClose}
+            style={{ backgroundColor: '#009E9EFF'}}
           >
             <IconMenu
               iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
