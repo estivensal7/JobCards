@@ -3,7 +3,13 @@ import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 const Cards = () => (
-  <Card>
+  <Card style={{
+    width: "449px", 
+    height: "465px", 
+    float: "left", 
+    marginLeft: "3px",
+    backgroundColor: "#666"
+  }}>
     <CardHeader
       title="Without Avatar"
       subtitle="Subtitle"
