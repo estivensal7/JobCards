@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 import Jobs from '../../jobTitles.js';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const menuProps = {
   desktop: true,
@@ -15,9 +16,36 @@ export default class JobSearch extends Component {
     return (
       <div>
         <AutoComplete
-          hintText="Type anything"
+          hintText="Job Title"
           dataSource={Jobs}
           menuProps={menuProps}
+          style={{
+            backgroundColor: '#666',
+            borderRadius: '5px',
+            paddingLeft: '10px',
+            paddingRight: '10px',
+            marginLeft: '10px'
+
+          }}
+        />
+        <AutoComplete
+          hintText="Zip Code"
+          dataSource={Jobs}
+          menuProps={menuProps}
+          style={{
+            backgroundColor: '#666',
+            borderRadius: '5px',
+            paddingLeft: '10px',
+            paddingRight: '10px',
+            marginLeft: '10px'
+          }}
+        />
+        <RaisedButton
+          label="Submit"
+          style={{
+            marginLeft: '20px'
+          }}
+          onClick={this.handleToggle}
         />
       </div>
     );
