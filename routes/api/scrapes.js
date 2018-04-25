@@ -7,7 +7,7 @@ router.route("/indeed/:query/:location")
 router.route("/dice/:query/:location")
 	.get(scrapeController.diceJobs);
 
-router.route("stackOverflow/:query/:location")
+router.route("/stackOverflow/:query/:location")
 	.get(scrapeController.stackOverflowJobs);
 
 module.exports = router;
