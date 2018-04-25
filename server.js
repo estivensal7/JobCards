@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(express.static("client/build"));
+app.use(routes);
 
 // Open server on PORT
 app.listen(PORT, function() {
