@@ -42,6 +42,7 @@ export default class Sidebar extends React.Component {
           <AppBar 
             title="Profile" 
             onLeftIconButtonClick={this.handleClose}
+            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             style={{ backgroundColor: '#009E9EFF'}}
           >
             <IconMenu
