@@ -7,7 +7,7 @@ const indeed = require("indeed-scraper");
 
 // Exports object
 module.exports = {
-	// Get jobs from indeed-scraper
+	// Get jobs from indeed-scraper npm
 	indeedJobs: function(req, res) {
 		// Set parameters as variables
 		const query = req.params.query;
@@ -38,45 +38,67 @@ module.exports = {
 		const query = req.params.query;
 		const location = req.params.location;
 
-		// Run request to dice.com
+		// Run request to dice.com, replaces spaces with +
 		request(`https://www.dice.com/jobs?q=${query.replace(" ", "+")}&l=${location.split(" ").join("+")}`, 
 			function(error, result, html){
+				// set array to store results
 				const jobs = [];
+				// Set cheerio to html result
 				const $ = cheerio.load(html);
+
+				// For each element with the specified class, look for text or
+				// attribute to target and store
 				$("div.serp-result-content").each(function(i, element) {
+					// results stores targeted data into an object
+					// title: targets the job title
+					// link: targets a link refrence inside an attribute, adds a header
+					// company: adds company name
 					const results = {
 						"title": $(element).find("h3").text().trim(),
 						"link": "https://www.dice.com" + $(element).find("a.loggedInVisited").attr("href"),
 						"company": $(element).find("span.compName").text()
 					};
-					
+					// push results into array
 					jobs.push(results)	
 				})
+				// returns scraped data
 				res.json(jobs);
 			}
 		);	
 	},
 
+	// Scrape stackoverflow.com for jobs
 	stackOverflowJobs: function(req, res) {
+		// Set parameters as variables
 		const query = req.params.query;
 		const location = req.params.location;
+		// replaces commas precent in string with an empty string
 		const newLocation = location.replace(",", "");
 
+		// Run request to stackoverflow.com, replaces spaces with +
 		request(`https://stackoverflow.com/jobs?sort=i&q=${query.replace(" ", "+")}&l=${newLocation.split(" ").join("+")}`, 
 			function(error, result, html) {
+				// set array to store results
 				const jobs = [];
+				// Set cheerio to html result
 				const $ = cheerio.load(html);
 
+				// For each element with the specified class, look for text or
+				// attribute to target and store
 				$("div.-job-summary").each(function(i, element) {
+					// results stores targeted data into an object
+					// title: targets the job title
+					// link: targets a link refrence inside an attribute, adds a header
+					// company: adds company name
 					const results = {
 						"title": $(element).find("h2.g-col10").text().trim(),
 						"link": "https://stackoverflow.com" + $(element).find("a.job-link").attr("href"),
 						"company": $(element).find("div.-name").text().trim()
 					}
-					
+					// push results into array
 					jobs.push(results);			
 				})
-
+				// returns scraped data
 				res.json(jobs);
 			}
 		);
