@@ -26,5 +26,17 @@ module.exports = {
 		.then(data => {
 			res.json(data);
 		})
+	},
+
+	// Retrieves saved jobs based on user ID
+	getSavedJobs: function(req, res) {
+		db.Saved_Jobs.findAll({
+			attributes: ["job_id", "title", "link", "company"],
+			where: {
+				user_id: req.params.id
+			}
+		})
+		.then(data => 
+			res.json(data));
 	}
 }

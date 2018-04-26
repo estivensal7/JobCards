@@ -8,8 +8,13 @@ const databaseController = require("../../controllers/databaseController");
 router.route("/newUser")
 	.post(databaseController.newUser);
 
-// Route for loggin in, has 2 parameters
+// Route for loggin in, requires 2 parameters
 router.route("/logIn/:username/:password")
-	.get(databaseController.logIn)
+	.get(databaseController.logIn);
+
+// Route for retrieving saved jobs by user,
+// requires 1 parameter
+router.route("/getSavedJobs/:id")
+	.get(databaseController.getSavedJobs);	
 
 module.exports = router;

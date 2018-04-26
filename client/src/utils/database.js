@@ -16,5 +16,10 @@ export default {
 	// Retrieve user information route
 	logIn: (username, password) => {
 		return axios.get(`/api/logIn/${username}/${password}`);
+	},
+
+	//Get saved jobs by user
+	getSavedJobs: (id) => {
+		return axios.get(`/api/getSavedJobs/${id}`);
 	}
 }
