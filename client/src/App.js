@@ -4,9 +4,15 @@ import Sidebar from './Components/Sidebar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Cards from './Components/Cards';
 import JobSearch from './Components/Title';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import RegisterForm from './Components/Register'
 
+injectTapEventPlugin();
 
 class App extends Component {
+
+  
+
   render() {
     return (
       <MuiThemeProvider >

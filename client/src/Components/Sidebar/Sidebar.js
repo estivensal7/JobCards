@@ -9,6 +9,9 @@ import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import RaisedButton from 'material-ui/RaisedButton';
+import LoginComponent from '../Login';
+import RegisterForm from '../Register';
+
 
 export default class Sidebar extends React.Component {
 
@@ -18,6 +21,19 @@ export default class Sidebar extends React.Component {
       open: false,
     };
   }
+
+  state = {
+    fields: {}
+  };
+
+  onChange = updatedValue => {
+    this.setState({
+      fields: {
+        ...this.state.fields,
+        ...updatedValue
+      }
+    });
+  };
 
   handleToggle = () => this.setState({open: !this.state.open});
 
@@ -37,7 +53,7 @@ export default class Sidebar extends React.Component {
           docked={false}
           width={600} 
           openSecondary={true} 
-          open={this.state.open} 
+          open={this.state.open}
         >
           <AppBar 
             title="Profile" 
@@ -54,6 +70,11 @@ export default class Sidebar extends React.Component {
               <MenuItem primaryText="Sign out" />
             </IconMenu>
           </AppBar>
+          <RegisterForm onChange={fields => this.onChange(fields)}/> 
+            
+          <p>
+            {JSON.stringify(this.state.fields, null, 2)}
+          </p>
         </Drawer>
       </div>
     );
