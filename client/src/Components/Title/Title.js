@@ -45,7 +45,6 @@ export default class JobSearch extends Component {
           style={{
             marginLeft: '20px'
           }}
-          onClick={this.handleToggle}
         />
       </div>
     );
