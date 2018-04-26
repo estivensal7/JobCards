@@ -9,7 +9,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// sets static folder
 app.use(express.static("client/build"));
+// Allows for usage of defined routs
 app.use(routes);
 
 // Open server on PORT
