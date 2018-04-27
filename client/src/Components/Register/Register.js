@@ -86,7 +86,7 @@ export default class Form extends React.Component {
           floatingLabelFixed
         />
         <br />
-        <RaisedButton label="Submit" onClick={e => this.onSubmit(e)} primary />
+        <RaisedButton label="Create Account" onClick={e => this.onSubmit(e)} primary />
       </form>
     );
   }
