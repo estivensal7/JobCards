@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import JobCard from '../JobCard';
 
 const Cards = (props) => (
   <Card style={{
@@ -22,6 +23,7 @@ const Cards = (props) => (
     />
     {props.children}
   </Card>
+
 );
 
 export default Cards;

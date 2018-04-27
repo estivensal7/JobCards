@@ -9,6 +9,8 @@ import RegisterForm from './Components/Register';
 import api from "./utils";
 import RaisedButton from 'material-ui/RaisedButton';
 import JobCard from "./Components/JobCard";
+import Login from './Components/Login';
+
 
 injectTapEventPlugin();
 
