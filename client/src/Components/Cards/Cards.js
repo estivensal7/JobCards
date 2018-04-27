@@ -20,6 +20,7 @@ const Cards = (props) => (
       actAsExpander={true}
       showExpandableButton={false}
     />
+    {props.children}
   </Card>
 );
 
