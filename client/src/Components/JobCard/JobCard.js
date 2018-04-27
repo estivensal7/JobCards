@@ -3,10 +3,8 @@ import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 const JobCard = (props) => (
   <Card style={{
-    width: "420px", 
-    height: "60px", 
-    float: "left", 
-    marginLeft: "8px",
+    width: "90%",  
+    margin: "0 auto",
     // marginTop: "10px",
     backgroundColor: "#fff"
   }}>
@@ -20,7 +18,7 @@ const JobCard = (props) => (
       showExpandableButton={false}
     >
       <CardActions>
-        <FlatButton label="Link" href={props.link} />
+        <FlatButton label="Link" href={props.link} target="_blank"/>
         <FlatButton label="Save Post" />
       </CardActions>
     </CardHeader>

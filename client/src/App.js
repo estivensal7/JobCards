@@ -17,7 +17,9 @@ class App extends Component {
   state = {
     title: "",
     location: "",
-    jobs: []
+    indeedJobs: [],
+    diceJobs: [],
+    stackOverflowJobs: []
   };
 
   handleTitleInput = (input) => {
@@ -31,8 +33,14 @@ class App extends Component {
   }
 
   getAllJobs = () => {
+    api.Scrape.indeedJobs(this.state.title, this.state.location)
+    .then(data => { this.setState( { indeedJobs: data.data } ) })
+
+    api.Scrape.diceJobs(this.state.title, this.state.location)
+    .then(data => { this.setState( { diceJobs: data.data } ) })
+
     api.Scrape.stackOverflowJobs(this.state.title, this.state.location)
-    .then(data => { this.setState( { jobs: data.data } ) })
+    .then(data => { this.setState( { stackOverflowJobs: data.data } ) })
   };
 
   render() {
@@ -50,12 +58,20 @@ class App extends Component {
             getAllJobs={this.getAllJobs} />
         </header>
         <Cards title="Dice"> 
-          {this.state.jobs.map(jobs => {
-            return <JobCard title={jobs.title} company={jobs.company} link={jobs.link}/>
+          {this.state.indeedJobs.map((jobs, i) => {
+            return <JobCard key={i} title={jobs.title} company={jobs.company} link={jobs.url}/>
           })}
         </Cards>
-        <Cards title="Indeed"/>
-        <Cards title="Stack Overflow"/>
+        <Cards title="Indeed">
+          {this.state.diceJobs.map((jobs, i) => {
+            return <JobCard key={i} title={jobs.title} company={jobs.company} link={jobs.link}/>
+          })}
+        </Cards>
+        <Cards title="Stack Overflow">
+          {this.state.stackOverflowJobs.map((jobs, i) => {
+            return <JobCard key={i} title={jobs.title} company={jobs.company} link={jobs.link}/>
+          })}
+        </Cards>
       </div>
       </MuiThemeProvider>
     );
