@@ -1,25 +1,23 @@
 import React from 'react';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import JobCard from '../JobCard';
+import {Card, CardHeader} from 'material-ui/Card';
 
 const Cards = (props) => (
   <Card style={{
     width: "440px", 
     height: "460px", 
-    float: "left", 
     marginLeft: "8px",
     marginTop: "10px",
-    backgroundColor: "#009E9EFF",
-    overflow: "scroll"
-  }}>
+    display: "inline-block",
+    overflow: "auto"
+  }}
+  zDepth={2}
+  >
     <CardHeader
       title={props.title}
+      avatar={props.avatar}
       titleStyle={{
         fontSize: '30px',
       }}
-      actAsExpander={true}
-      showExpandableButton={false}
     />
     {props.children}
   </Card>

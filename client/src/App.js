@@ -10,7 +10,9 @@ import api from "./utils";
 import RaisedButton from 'material-ui/RaisedButton';
 import JobCard from "./Components/JobCard";
 import Login from './Components/Login';
-
+import indeedLogo from "./img/indeed.png"
+import diceLogo from "./img/dice.png";
+import stackOverflowLogo from "./img/stackoverflow.png";
 
 injectTapEventPlugin();
 
@@ -35,8 +37,13 @@ class App extends Component {
   }
 
   getAllJobs = () => {
+    this.setState({loading: "show"})
     api.Scrape.indeedJobs(this.state.title, this.state.location)
-    .then(data => { this.setState( { indeedJobs: data.data } ) })
+    .then(data => { 
+      this.setState({ 
+        indeedJobs: data.data
+      }) 
+    })
 
     api.Scrape.diceJobs(this.state.title, this.state.location)
     .then(data => { this.setState( { diceJobs: data.data } ) })
@@ -59,21 +66,23 @@ class App extends Component {
             locationText={this.handleLocationInput} 
             getAllJobs={this.getAllJobs} />
         </header>
-        <Cards title="Dice"> 
-          {this.state.indeedJobs.map((jobs, i) => {
-            return <JobCard key={i} title={jobs.title} company={jobs.company} link={jobs.url}/>
-          })}
-        </Cards>
-        <Cards title="Indeed">
-          {this.state.diceJobs.map((jobs, i) => {
-            return <JobCard key={i} title={jobs.title} company={jobs.company} link={jobs.link}/>
-          })}
-        </Cards>
-        <Cards title="Stack Overflow">
-          {this.state.stackOverflowJobs.map((jobs, i) => {
-            return <JobCard key={i} title={jobs.title} company={jobs.company} link={jobs.link}/>
-          })}
-        </Cards>
+        <div className="card-holder">
+          <Cards title="Indeed" avatar={indeedLogo}>
+            {this.state.indeedJobs.map((jobs, i) => {
+              return <JobCard key={i} title={jobs.title} company={jobs.company} link={jobs.url}/>
+            })}
+          </Cards>
+          <Cards title="Dice" avatar={diceLogo} >
+            {this.state.diceJobs.map((jobs, i) => {
+              return <JobCard key={i} title={jobs.title} company={jobs.company} link={jobs.link}/>
+            })}
+          </Cards>
+          <Cards title="Stack Overflow" avatar={stackOverflowLogo}>
+            {this.state.stackOverflowJobs.map((jobs, i) => {
+              return <JobCard key={i} title={jobs.title} company={jobs.company} link={jobs.link}/>
+            })}
+          </Cards>
+        </div>
       </div>
       </MuiThemeProvider>
     );
