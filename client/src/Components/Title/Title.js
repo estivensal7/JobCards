@@ -2,21 +2,19 @@ import React, {Component} from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 import Jobs from '../../jobTitles.js';
 import RaisedButton from 'material-ui/RaisedButton';
+import api from "../../utils";
 
 const menuProps = {
   desktop: true,
   disableAutoFocus: true,
 };
 
-/**
- * Provide props to be passed into the Menu component.
- */
-export default class JobSearch extends Component {
-  render() {
-    return (
+const JobSearch = (props) => (
       <div>
         <AutoComplete
           hintText="Job Title"
+          searchText={props.title}
+          onUpdateInput={props.titleText}
           dataSource={Jobs}
           menuProps={menuProps}
           style={{
@@ -32,6 +30,8 @@ export default class JobSearch extends Component {
           hintText="Zip Code"
           dataSource={Jobs}
           menuProps={menuProps}
+          searchText={props.location}
+          onUpdateInput={props.locationText}
           style={{
             backgroundColor: '#666',
             borderRadius: '5px',
@@ -45,8 +45,9 @@ export default class JobSearch extends Component {
           style={{
             marginLeft: '20px'
           }}
+          onClick={props.getAllJobs}
         />
       </div>
-    );
-  }
-}
+)
+
+export default JobSearch;

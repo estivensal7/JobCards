@@ -10,8 +10,8 @@ const Cards = (props) => (
     float: "left", 
     marginLeft: "8px",
     marginTop: "10px",
-    backgroundColor: "#009E9EFF"
-
+    backgroundColor: "#009E9EFF",
+    overflow: "scroll"
   }}>
     <CardHeader
       title={props.title}
@@ -21,7 +21,7 @@ const Cards = (props) => (
       actAsExpander={true}
       showExpandableButton={false}
     />
-  <JobCard />
+    {props.children}
   </Card>
 
 );
