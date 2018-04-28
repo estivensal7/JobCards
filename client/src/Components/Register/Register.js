@@ -12,23 +12,17 @@ export default class Form extends React.Component {
   };
 
   change = e => {
-    this.props.onChange({ [e.target.name]: e.target.value });
+    // this.props.onChange({ [e.target.name]: e.target.value });
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
+
   onSubmit = e => {
     e.preventDefault();
     // this.props.onSubmit(this.state);
     this.setState({
-      firstName: "",
-      lastName: "",
-      username: "",
-      email: "",
-      password: ""
-    });
-    this.props.onChange({
       firstName: "",
       lastName: "",
       username: "",
@@ -41,39 +35,13 @@ export default class Form extends React.Component {
     return (
       <form>
         <TextField
-          name="firstName"
-          hintText="First name"
-          floatingLabelText="First name"
-          value={this.state.firstName}
-          onChange={e => this.change(e)}
-          floatingLabelFixed
-        />
-        <br />
-        <TextField
-          name="lastName"
-          hintText="Last Name"
-          floatingLabelText="Last Name"
-          value={this.state.lastName}
-          onChange={e => this.change(e)}
-          floatingLabelFixed
-        />
-        <br />
-        <TextField
           name="username"
           hintText="Username"
           floatingLabelText="Username"
           value={this.state.username}
           onChange={e => this.change(e)}
           floatingLabelFixed
-        />
-        <br />
-        <TextField
-          name="email"
-          hintText="Email"
-          floatingLabelText="Email"
-          value={this.state.email}
-          onChange={e => this.change(e)}
-          floatingLabelFixed
+          style={{marginLeft: '175px'}}
         />
         <br />
         <TextField
@@ -84,9 +52,14 @@ export default class Form extends React.Component {
           onChange={e => this.change(e)}
           type="password"
           floatingLabelFixed
+          style={{marginLeft: '175px'}}
         />
         <br />
-        <RaisedButton label="Create Account" onClick={e => this.onSubmit(e)} primary />
+        <RaisedButton 
+          label="Create Account" 
+          onClick={e => this.onSubmit(e)} 
+          style={{marginLeft: '223px'}}
+          primary />
       </form>
     );
   }
