@@ -23,7 +23,8 @@ export default class Sidebar extends React.Component {
   }
 
   state = {
-    fields: {}
+    fields: {},
+    formSelect: "login" 
   };
 
   onChange = updatedValue => {
@@ -46,17 +47,21 @@ export default class Sidebar extends React.Component {
   // signUpForm (props) {
   //   return <RegisterForm />
   // };
+ 
 
-  renderSigningUpOrLoggingIn (props) {
-    const isLoggingIn = props.isLoggingIn;
-    if (isLoggingIn) {
+  renderSigningUpOrLoggingIn() {
+    if (this.state.formSelect = "login") {
       return <Login />;
     } 
 
-    if (!isLoggingIn) {
+    else if (this.state.formSelect = "register") {
       return <RegisterForm />;
     }
   };
+
+  handleFormChange = formState => {
+    this.setState({formSelect: formState})
+  } 
   
   render() {
     return (
@@ -94,7 +99,7 @@ export default class Sidebar extends React.Component {
               buttonStyle = {{
               backgroundColor: "#565656FF"    
               }}
-              primary
+              onClick={this.handleFormChange}
             />
             <RaisedButton 
               label="Login" 
@@ -102,10 +107,12 @@ export default class Sidebar extends React.Component {
                 marginLeft: "5px",
                 marginTop: "20px"
               }}
-              primary 
+              onClick={this.handleFormChange}
             />
-            <RegisterForm onChange={fields => this.onChange(fields)}/> 
-            <Login onChange={fields => this.onChange(fields)}/>  
+            {
+             this.renderSigningUpOrLoggingIn()   
+            }
+            
             <p>
               {JSON.stringify(this.state.fields, null, 2)}
             </p>
