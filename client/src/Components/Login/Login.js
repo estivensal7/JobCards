@@ -6,7 +6,7 @@ import api from "../../utils";
 export default class Login extends React.Component {
   state = {
     username: "",
-    password: ""
+    password: "",
   };
 
   change = e => {
@@ -46,6 +46,7 @@ export default class Login extends React.Component {
           value={this.state.username}
           onChange={e => this.change(e)}
           floatingLabelFixed
+          style={{marginLeft: '175px'}}
         />
         <br />
         <TextField
@@ -56,18 +57,15 @@ export default class Login extends React.Component {
           onChange={e => this.change(e)}
           type="password"
           floatingLabelFixed
+          style={{marginLeft: '175px'}}
         />
         <br />
         
         <RaisedButton 
-        	label="Login" 
-        	onClick={e => this.onSubmit(e)} 
-        	buttonStyle = {{
-        		marginLeft: "5px",
-        		marginTop: "20px"
-        	}}
-        	primary 
-        />
+          label="Login" 
+          onClick={e => this.onSubmit(e)} 
+          primary style={{marginLeft: '260px'}}/>
+        
       </form>
     );
   }

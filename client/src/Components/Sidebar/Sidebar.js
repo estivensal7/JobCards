@@ -11,6 +11,8 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import RaisedButton from 'material-ui/RaisedButton';
 import Login from '../Login';
 import RegisterForm from '../Register';
+import {Tabs, Tab} from 'material-ui/Tabs';
+import './Sidebar.css';
 
 
 export default class Sidebar extends React.Component {
@@ -24,7 +26,8 @@ export default class Sidebar extends React.Component {
 
   state = {
     fields: {},
-    formSelect: "login" 
+    formSelect: "login",
+    value: 'Login'
   };
 
   onChange = updatedValue => {
@@ -40,13 +43,11 @@ export default class Sidebar extends React.Component {
 
   handleClose = () => this.setState({open: false});
 
-  // signInForm (props) {
-  //   return <Login />
-  // };
-
-  // signUpForm (props) {
-  //   return <RegisterForm />
-  // };
+  handleChange = (value) => {
+    this.setState({
+      value: value,
+    });
+  };
  
 
   renderSigningUpOrLoggingIn() {
@@ -61,7 +62,7 @@ export default class Sidebar extends React.Component {
 
   handleFormChange = formState => {
     this.setState({formSelect: formState})
-  } 
+  }
   
   render() {
     return (
@@ -93,32 +94,49 @@ export default class Sidebar extends React.Component {
                 <MenuItem primaryText="Send feedback" />
                 <MenuItem primaryText="Sign out" />
               </IconMenu>
+
             </AppBar>
-            <RaisedButton 
-              label="Sign Up" 
-              buttonStyle = {{
-              backgroundColor: "#565656FF"    
-              }}
-              onClick={this.handleFormChange}
-            />
-            <RaisedButton 
-              label="Login" 
-              buttonStyle = {{
-                marginLeft: "5px",
-                marginTop: "20px"
-              }}
-              onClick={this.handleFormChange}
-            />
-            {
-             this.renderSigningUpOrLoggingIn()   
-            }
-            
+
+            <Tabs
+              value={this.state.value}
+              onChange={this.handleChange}
+              className='tabs-container'
+            >
+              <Tab label="Log In" value="Login" className='tab'>
+                <div>
+                    <Login />
+                </div>
+              </Tab>
+              <Tab label="Sign-Up" value="Register" className='tab'>
+                <div>
+                    <RegisterForm />
+                </div>
+              </Tab>
+            </Tabs>
             <p>
               {JSON.stringify(this.state.fields, null, 2)}
             </p>
-            {/*<renderSigningUpOrLoggingIn isLoggingIn={true} />*/}
           </Drawer>
         </div>
     );
   }
 }
+            // {
+            //  this.renderSigningUpOrLoggingIn()   
+            // }
+            
+            // <RaisedButton 
+            //   label="Sign Up" 
+            //   buttonStyle = {{
+            //   backgroundColor: "#565656FF"    
+            //   }}
+            //   onClick={this.handleFormChange}
+            // />
+            // <RaisedButton 
+            //   label="Login" 
+            //   buttonStyle = {{
+            //     marginLeft: "5px",
+            //     marginTop: "20px"
+            //   }}
+            //   onClick={this.handleFormChange}
+            // />
