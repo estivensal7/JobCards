@@ -12,6 +12,9 @@ router.route("/newUser")
 router.route("/logIn/:username/:password")
 	.get(databaseController.logIn);
 
+router.route("/saveJob")
+	.post(databaseController.saveJob);
+
 // Route for retrieving saved jobs by user,
 // requires 1 parameter
 router.route("/getSavedJobs/:id")
