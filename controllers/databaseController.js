@@ -28,6 +28,18 @@ module.exports = {
 		})
 	},
 
+	saveJob: function(req, res) {
+		db.Saved_Jobs.create({
+			title: req.body.title,
+			link: req.body.link,
+			company: req.body.company,
+			user_id: req.body.userId
+		})
+		.then(data => {
+			res.json(data);
+		})
+	},
+
 	// Retrieves saved jobs based on user ID
 	getSavedJobs: function(req, res) {
 		db.Saved_Jobs.findAll({

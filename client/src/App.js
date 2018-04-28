@@ -34,7 +34,7 @@ class App extends Component {
 
   handleLocationInput = (input) => {
     this.setState({ location: input })
-  }
+  };
 
   getAllJobs = () => {
     api.Scrape.indeedJobs(this.state.title, this.state.location)
@@ -50,6 +50,15 @@ class App extends Component {
     api.Scrape.stackOverflowJobs(this.state.title, this.state.location)
     .then(data => { this.setState( { stackOverflowJobs: data.data } ) })
   };
+
+  saveJob = (title, link, company) => {
+    const userId = localStorage.getItem("user_id");
+    const job = {
+      userId, title, link, company
+    }
+    api.Database.saveJob(job)
+    .then(console.log("check database"))
+  }
 
   render() {
     return (
@@ -68,17 +77,32 @@ class App extends Component {
         <div className="card-holder">
           <Cards title="Indeed" avatar={indeedLogo}>
             {this.state.indeedJobs.map((jobs, i) => {
-              return <JobCard key={i} title={jobs.title} company={jobs.company} link={jobs.url}/>
+              return <JobCard 
+                key={i} 
+                title={jobs.title} 
+                company={jobs.company} 
+                link={jobs.url} 
+                saveJob={() => this.saveJob(jobs.title, jobs.url, jobs.company)}/>
             })}
           </Cards>
           <Cards title="Dice" avatar={diceLogo} >
             {this.state.diceJobs.map((jobs, i) => {
-              return <JobCard key={i} title={jobs.title} company={jobs.company} link={jobs.link}/>
+              return <JobCard 
+                key={i} 
+                title={jobs.title} 
+                company={jobs.company} 
+                link={jobs.link}
+                saveJob={() => this.saveJob(jobs.title, jobs.link, jobs.company)}/>
             })}
           </Cards>
           <Cards title="Stack Overflow" avatar={stackOverflowLogo}>
             {this.state.stackOverflowJobs.map((jobs, i) => {
-              return <JobCard key={i} title={jobs.title} company={jobs.company} link={jobs.link}/>
+              return <JobCard 
+                key={i} 
+                title={jobs.title} 
+                company={jobs.company} 
+                link={jobs.link}
+                saveJob={() => this.saveJob(jobs.title, jobs.link, jobs.company)}/>
             })}
           </Cards>
         </div>

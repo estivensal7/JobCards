@@ -10,7 +10,7 @@ export default class Login extends React.Component {
   };
 
   change = e => {
-    this.props.onChange({ [e.target.name]: e.target.value });
+    // this.props.onChange({ [e.target.name]: e.target.value });
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -30,10 +30,7 @@ export default class Login extends React.Component {
       username: "",
       password: ""
     });
-    this.props.onChange({
-      username: "",
-      password: ""
-    });
+    
   };
 
   render() {

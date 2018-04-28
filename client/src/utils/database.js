@@ -18,6 +18,10 @@ export default {
 		return axios.get(`/api/logIn/${username}/${password}`);
 	},
 
+	saveJob(data) {
+		return axios.post("/api/saveJob", data);
+	},
+
 	//Get saved jobs by user
 	getSavedJobs: (id) => {
 		return axios.get(`/api/getSavedJobs/${id}`);
