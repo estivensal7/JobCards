@@ -21,7 +21,12 @@ const JobSearch = (props) => (
             borderRadius: '5px',
             paddingLeft: '10px',
             paddingRight: '10px',
-            marginLeft: '10px'
+            marginLeft: '10px',
+          }}
+          filter={AutoComplete.caseInsensitiveFilter}
+          inputStyle={{
+            color: '#fff',
+            fontSize: '20px'
           }}
         />
         <AutoComplete
@@ -37,13 +42,19 @@ const JobSearch = (props) => (
             paddingRight: '10px',
             marginLeft: '10px'
           }}
+          inputStyle={{
+            color: '#fff',
+            fontSize: '20px'
+          }}
         />
         <RaisedButton
           label="Submit"
           style={{
-            marginLeft: '20px'
+            marginLeft: '20px',
+            borderRadius: '10px'
           }}
           onClick={props.getAllJobs}
+          primary
         />
       </div>
 )
