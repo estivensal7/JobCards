@@ -37,7 +37,6 @@ class App extends Component {
   }
 
   getAllJobs = () => {
-    this.setState({loading: "show"})
     api.Scrape.indeedJobs(this.state.title, this.state.location)
     .then(data => { 
       this.setState({ 

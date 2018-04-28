@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, CardActions, CardHeader} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+
 const JobCard = (props) => (
   <Card style={{
     width: "90%",  
