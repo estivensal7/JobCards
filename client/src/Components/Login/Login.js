@@ -1,6 +1,7 @@
 import React from "react";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
+import api from "../../utils";
 
 export default class Login extends React.Component {
   state = {
@@ -17,7 +18,14 @@ export default class Login extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    // this.props.onSubmit(this.state);
+    
+    api.Database.logIn(this.state.username, this.state.password)
+    .then(data => {
+      console.log(data);
+      localStorage.setItem("username", JSON.stringify(data.data.username));
+      localStorage.setItem("user_id", JSON.stringify(data.data.user_id));
+    })
+
     this.setState({
       username: "",
       password: ""

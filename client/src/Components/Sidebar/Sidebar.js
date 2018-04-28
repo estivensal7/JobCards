@@ -23,7 +23,8 @@ export default class Sidebar extends React.Component {
   }
 
   state = {
-    fields: {}
+    fields: {},
+    formSelect: "login" 
   };
 
   onChange = updatedValue => {
@@ -38,25 +39,21 @@ export default class Sidebar extends React.Component {
   handleToggle = () => this.setState({open: !this.state.open});
 
   handleClose = () => this.setState({open: false});
+ 
 
-  // signInForm (props) {
-  //   return <Login />
-  // };
+  renderSigningUpOrLoggingIn() {
+    if (this.state.formSelect = "login") {
+      return <Login />;
+    } 
 
-  // signUpForm (props) {
-  //   return <RegisterForm />
-  // };
+    else if (this.state.formSelect = "register") {
+      return <RegisterForm />;
+    }
+  };
 
-  // renderSigningUpOrLoggingIn (props) {
-  //   const isLoggingIn = props.isLoggingIn;
-  //   if (isLoggingIn) {
-  //     return <Login />;
-  //   } 
-
-  //   if (!isLoggingIn) {
-  //     return <RegisterForm />;
-  //   }
-  // };
+  handleFormChange = formState => {
+    this.setState({formSelect: formState})
+  }
   
   render() {
     return (
@@ -94,7 +91,7 @@ export default class Sidebar extends React.Component {
               buttonStyle = {{
               backgroundColor: "#565656FF"    
               }}
-              primary
+              onClick={this.handleFormChange}
             />
             <RaisedButton 
               label="Login" 
@@ -102,14 +99,16 @@ export default class Sidebar extends React.Component {
                 marginLeft: "5px",
                 marginTop: "20px"
               }}
-              primary 
+              onClick={this.handleFormChange}
             />
-            {/*<RegisterForm onChange={fields => this.onChange(fields)}/> 
-                        <Login onChange={fields => this.onChange(fields)}/>  
-                        <p>
-                          {JSON.stringify(this.state.fields, null, 2)}
-                        </p>*/}
-            {/*<renderSigningUpOrLoggingIn isLoggingIn={true} />*/}
+
+            {
+             this.renderSigningUpOrLoggingIn()   
+            }
+            
+            <p>
+              {JSON.stringify(this.state.fields, null, 2)}
+            </p>
           </Drawer>
         </div>
     );

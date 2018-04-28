@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 import Jobs from '../../jobTitles.js';
 import RaisedButton from 'material-ui/RaisedButton';
-import api from "../../utils";
 
 const menuProps = {
   desktop: true,
@@ -23,7 +22,6 @@ const JobSearch = (props) => (
             paddingLeft: '10px',
             paddingRight: '10px',
             marginLeft: '10px'
-
           }}
         />
         <AutoComplete
