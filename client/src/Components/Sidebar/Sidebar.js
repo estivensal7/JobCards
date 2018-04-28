@@ -85,8 +85,9 @@ export default class Sidebar extends React.Component {
             label="Profile"
             onClick={this.handleToggle}
             style={{
-              float: 'right'
+              float: 'right',
             }}
+            primary
           />
           <Drawer 
             docked={false}
