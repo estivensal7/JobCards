@@ -53,11 +53,15 @@ class App extends Component {
 
   saveJob = (title, link, company) => {
     const userId = localStorage.getItem("user_id");
-    const job = {
-      userId, title, link, company
+    if (userId) {
+      const job = {
+        userId, title, link, company
+      }
+      api.Database.saveJob(job)
+      .then(alert("Job saved."))
+    } else {
+      alert("You need to be logged in to save a job!");
     }
-    api.Database.saveJob(job)
-    .then(console.log("check database"))
   }
 
   render() {
