@@ -45,12 +45,23 @@ class App extends Component {
     .then(data => { this.setState( { stackOverflowJobs: data.data } ) })
   };
 
+  renderSigningUpOrLoggingIn (props) {
+    const isLoggingIn = props.isLoggingIn;
+    if (isLoggingIn) {
+      return <Login />;
+    } else {
+      return <RegisterForm />;
+    }
+  };
+
   render() {
     return (
       <MuiThemeProvider >
       <div className="App">
         <header className="App-header">
-          <Sidebar />
+          <Sidebar>
+            <renderSigningUpOrLoggingIn isLoggingIn={false} />
+          </Sidebar>
           <h1 className="App-title">Welcome to React</h1>
           <JobSearch 
             title={this.state.title}

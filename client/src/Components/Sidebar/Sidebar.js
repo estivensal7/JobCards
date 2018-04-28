@@ -47,16 +47,16 @@ export default class Sidebar extends React.Component {
   //   return <RegisterForm />
   // };
 
-  renderSigningUpOrLoggingIn (props) {
-    const isLoggingIn = props.isLoggingIn;
-    if (isLoggingIn) {
-      return <Login />;
-    } 
+  // renderSigningUpOrLoggingIn (props) {
+  //   const isLoggingIn = props.isLoggingIn;
+  //   if (isLoggingIn) {
+  //     return <Login />;
+  //   } 
 
-    if (!isLoggingIn) {
-      return <RegisterForm />;
-    }
-  };
+  //   if (!isLoggingIn) {
+  //     return <RegisterForm />;
+  //   }
+  // };
   
   render() {
     return (
@@ -104,11 +104,11 @@ export default class Sidebar extends React.Component {
               }}
               primary 
             />
-            <RegisterForm onChange={fields => this.onChange(fields)}/> 
-            <Login onChange={fields => this.onChange(fields)}/>  
-            <p>
-              {JSON.stringify(this.state.fields, null, 2)}
-            </p>
+            {/*<RegisterForm onChange={fields => this.onChange(fields)}/> 
+                        <Login onChange={fields => this.onChange(fields)}/>  
+                        <p>
+                          {JSON.stringify(this.state.fields, null, 2)}
+                        </p>*/}
             {/*<renderSigningUpOrLoggingIn isLoggingIn={true} />*/}
           </Drawer>
         </div>

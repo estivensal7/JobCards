@@ -5,7 +5,7 @@ import RaisedButton from "material-ui/RaisedButton";
 export default class Login extends React.Component {
   state = {
     username: "",
-    password: ""
+    password: "",
   };
 
   change = e => {
