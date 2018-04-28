@@ -51,6 +51,7 @@ class App extends Component {
     .then(data => { this.setState( { stackOverflowJobs: data.data } ) })
   };
 
+
   saveJob = (title, link, company) => {
     const userId = localStorage.getItem("user_id");
     if (userId) {
@@ -64,12 +65,15 @@ class App extends Component {
     }
   }
 
+
   render() {
     return (
       <MuiThemeProvider >
       <div className="App">
         <header className="App-header">
-          <Sidebar />
+          <Sidebar>
+            <renderSigningUpOrLoggingIn isLoggingIn={false} />
+          </Sidebar>
           <h1 className="App-title">Welcome to React</h1>
           <JobSearch 
             title={this.state.title}
