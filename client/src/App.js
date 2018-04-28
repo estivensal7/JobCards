@@ -74,7 +74,7 @@ class App extends Component {
           <Sidebar>
             <renderSigningUpOrLoggingIn isLoggingIn={false} />
           </Sidebar>
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">JobCards</h1>
           <JobSearch 
             title={this.state.title}
             location={this.state.location} 

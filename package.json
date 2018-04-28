@@ -31,6 +31,7 @@
     "body-parser": "^1.18.2",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.3",
+    "font-awesome": "^4.7.0",
     "indeed-scraper": "^2.0.2",
     "mysql2": "^1.5.3",
     "react-router-dom": "^4.2.2",
