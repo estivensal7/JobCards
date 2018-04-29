@@ -74,5 +74,15 @@ module.exports = {
 		})
 		.then(data => 
 			res.json(data));
+	},
+
+	deleteNote: function(req, res) {
+		db.Notes.destroy({
+			where: {
+				notes_id: req.params.id
+			}
+		})
+		.then(data =>
+			res.json(data));
 	}
 }

@@ -26,4 +26,7 @@ router.route("/getNotes/:userId/:jobId")
 router.route("/addNewNote")
 	.post(databaseController.addNewNote);
 
+router.route("/deleteNote/:id")
+	.delete(databaseController.deleteNote);
+
 module.exports = router;

@@ -36,5 +36,9 @@ export default {
 	// Add new note on saved job by user
 	addNewNote: (data) => {
 		return axios.post('/api/addNewNote', data)
+	},
+
+	deleteNote: id => {
+		return axios.delete(`/api/deleteNote/${id}` )
 	}
 }

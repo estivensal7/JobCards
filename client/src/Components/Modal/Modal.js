@@ -46,6 +46,11 @@ export default class DialogExampleSimple extends React.Component {
   	.then(data => this.getNotes())
   };
 
+  deleteNote = e => {
+    api.Database.deleteNote(e.target.id)
+    .then(data => this.getNotes())
+  };
+
   handleInputChange = (input) => {
   	const text = input.target.value;
   	this.setState({ newNote: text })
@@ -83,12 +88,15 @@ export default class DialogExampleSimple extends React.Component {
           		style={{
           			height:"100px",
           			margin: "5px",
-          			overflow: "auto"
+          			overflow: "auto",
+                padding: "20px"
           		}}
           		zDepth={2}
           	>
           		{note.message}
-          		<a className="delete-button">X</a>
+          		<a className="delete-button"
+                id={note.notes_id}
+                onClick={e => this.deleteNote(e)}>X</a>
           	</Paper>
           })}
           <textarea 
