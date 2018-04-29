@@ -23,4 +23,7 @@ router.route("/getSavedJobs/:id")
 router.route("/getNotes/:userId/:jobId")
 	.get(databaseController.getNotes);
 
+router.route("/addNewNote")
+	.post(databaseController.addNewNote);
+
 module.exports = router;

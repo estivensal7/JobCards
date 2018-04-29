@@ -1,0 +1,28 @@
+.delete-button {
+	color: white;
+	border-radius: 5px;
+	float: right;
+	background-color: #F10D21FF;
+	width: 25px;
+	height: 25px;
+	font-size: 18px;
+	text-align: center;
+	padding: 5px;
+}
+
+.delete-button:hover {
+	transition: .3s;
+	background-color: #F45C6DFF;
+	cursor: pointer;
+}
+
+.delete-button:active {
+	transition: none;
+	background-color: #000000FF;
+}
+
+.new-note--text {
+	width: 100%;
+	height: 100px;
+	resize: none;
+}

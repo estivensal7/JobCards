@@ -1,13 +1,11 @@
 import React from "react";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
+import api from "../../utils";
 
 export default class Form extends React.Component {
   state = {
-    firstName: "",
-    lastName: "",
     username: "",
-    email: "",
     password: ""
   };
 
@@ -19,16 +17,8 @@ export default class Form extends React.Component {
   };
 
 
-  onSubmit = e => {
-    e.preventDefault();
-    // this.props.onSubmit(this.state);
-    this.setState({
-      firstName: "",
-      lastName: "",
-      username: "",
-      email: "",
-      password: ""
-    });
+  onSubmit = () => {
+    api.Database.newUser(this.state.username, this.state.password);
   };
 
   render() {

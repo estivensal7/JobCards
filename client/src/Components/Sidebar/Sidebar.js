@@ -67,11 +67,11 @@ export default class Sidebar extends React.Component {
   }
 
   renderSigningUpOrLoggingIn() {
-    if (this.state.formSelect = "login") {
+    if (this.state.formSelect === "login") {
       return <Login />;
     } 
 
-    else if (this.state.formSelect = "register") {
+    else if (this.state.formSelect === "register") {
       return <RegisterForm />;
     }
   };
