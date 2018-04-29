@@ -9,7 +9,9 @@ const JobCard = (props) => (
     margin: "0 auto",
     marginTop: "5px",
     textAlign: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    boxShadow: '0px 0px 20px 3px #222',
+    borderRadius: '5px'
   }}>
     <CardHeader
       title={props.title}

@@ -88,8 +88,10 @@ export default class Sidebar extends React.Component {
             onClick={this.handleToggle}
             style={{
               float: 'right',
+              borderRadius: '5px',
             }}
-            primary
+            backgroundColor='#444'
+            labelColor='#fff'
           />
           <Drawer 
             docked={false}
@@ -154,22 +156,3 @@ export default class Sidebar extends React.Component {
     );
   }
 }
-            // {
-            //  this.renderSigningUpOrLoggingIn()   
-            // }
-            
-            // <RaisedButton 
-            //   label="Sign Up" 
-            //   buttonStyle = {{
-            //   backgroundColor: "#565656FF"    
-            //   }}
-            //   onClick={this.handleFormChange}
-            // />
-            // <RaisedButton 
-            //   label="Login" 
-            //   buttonStyle = {{
-            //     marginLeft: "5px",
-            //     marginTop: "20px"
-            //   }}
-            //   onClick={this.handleFormChange}
-            // />
