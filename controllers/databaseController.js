@@ -64,5 +64,25 @@ module.exports = {
 		})
 		.then(data => 
 			res.json(data));
+	},
+
+	addNewNote: function(req, res) {
+		db.Notes.create({
+			message: req.body.message,
+			user_id: req.body.userId,
+			job_id: req.body.jobId
+		})
+		.then(data => 
+			res.json(data));
+	},
+
+	deleteNote: function(req, res) {
+		db.Notes.destroy({
+			where: {
+				notes_id: req.params.id
+			}
+		})
+		.then(data =>
+			res.json(data));
 	}
 }

@@ -18,6 +18,7 @@ export default {
 		return axios.get(`/api/logIn/${username}/${password}`);
 	},
 
+	// Save job to database by userID
 	saveJob(data) {
 		return axios.post("/api/saveJob", data);
 	},
@@ -27,7 +28,17 @@ export default {
 		return axios.get(`/api/getSavedJobs/${id}`);
 	},
 
+	// Get all notes created by user on saved job
 	getNotes: (userId, jobId) => {
 		return axios.get(`/api/getNotes/${userId}/${jobId}`);
+	},
+
+	// Add new note on saved job by user
+	addNewNote: (data) => {
+		return axios.post('/api/addNewNote', data)
+	},
+
+	deleteNote: id => {
+		return axios.delete(`/api/deleteNote/${id}` )
 	}
 }
