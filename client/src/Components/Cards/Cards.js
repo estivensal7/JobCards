@@ -1,14 +1,18 @@
 import React from 'react';
 import {Card, CardHeader} from 'material-ui/Card';
+import './Cards.css';
+
 
 const Cards = (props) => (
   <Card style={{
     width: "440px", 
-    height: "460px", 
+    height: "465px", 
     marginLeft: "8px",
-    marginTop: "10px",
+    marginTop: "2px",
     display: "inline-block",
-    overflow: "auto"
+    overflow: "auto",
+    boxShadow: '0px 0px 20px 2px #222 inset',
+    borderRadius: '3px'
   }}
   zDepth={2}
   >
