@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Handlee');
+
 .App {
   text-align: center;
 }
@@ -15,7 +17,8 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-family: 'Handlee', sans-serif;
+  font-size: 2.0em;
 }
 
 .App-intro {
@@ -31,3 +34,4 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+

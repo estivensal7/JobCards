@@ -32,10 +32,12 @@ export default class Sidebar extends React.Component {
     jobs: []
   };
 
-  // componentDidMount() {
-  //   api.Database.getSavedJobs(localStorage.getItem("user_id"))
-  //   .then(data => this.setState({ jobs: data.data }))
-  // }
+  componentDidMount() {
+    if (localStorage.getItem("user_id")) {
+      api.Database.getSavedJobs(localStorage.getItem("user_id"))
+      .then(data => this.setState({ jobs: data.data }))
+    }
+  }
 
   onChange = updatedValue => {
     this.setState({
@@ -138,6 +140,7 @@ export default class Sidebar extends React.Component {
                     {this.state.jobs.map((job, i) => {
                     return <JobCard 
                       key={i}
+                      job_id={job.job_id}
                       title={job.title}
                       company={job.company} 
                       link={job.link}

@@ -15,16 +15,19 @@ import diceLogo from "./img/dice.png";
 import stackOverflowLogo from "./img/stackoverflow.png";
 
 injectTapEventPlugin();
-
-class App extends Component {
-
-  state = {
+const inintializeState = () => {
+  return {
     title: "",
     location: "",
     indeedJobs: [],
     diceJobs: [],
     stackOverflowJobs: []
-  };
+  }
+};
+
+class App extends Component {
+
+  state = inintializeState();
 
   handleTitleInput = (input) => {
     this.setState({
@@ -37,18 +40,21 @@ class App extends Component {
   };
 
   getAllJobs = () => {
+    this.setState(inintializeState());
     api.Scrape.indeedJobs(this.state.title, this.state.location)
     .then(data => { 
-      this.setState({ 
-        indeedJobs: data.data
-      }) 
+      this.setState( { indeedJobs: data.data } ) 
     })
 
     api.Scrape.diceJobs(this.state.title, this.state.location)
-    .then(data => { this.setState( { diceJobs: data.data } ) })
+    .then(data => { 
+      this.setState( { diceJobs: data.data } ) 
+    })
 
     api.Scrape.stackOverflowJobs(this.state.title, this.state.location)
-    .then(data => { this.setState( { stackOverflowJobs: data.data } ) })
+    .then(data => { 
+      this.setState( { stackOverflowJobs: data.data } ) 
+    })
   };
 
 

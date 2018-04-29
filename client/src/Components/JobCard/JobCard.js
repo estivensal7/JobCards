@@ -1,8 +1,7 @@
 import React from 'react';
 import {Card, CardActions, CardHeader} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import api from "../../utils";
-
+import Modal from "../Modal";
 
 const JobCard = (props) => (
   <Card style={{
@@ -24,7 +23,12 @@ const JobCard = (props) => (
     >
       <CardActions>
         <FlatButton label="Link" href={props.link} target="_blank"/>
-        <FlatButton label="Save Post" onClick={props.saveJob} />
+        { props.job_id ?
+          // <FlatButton label="Notes" onClick={props.saveJob} />
+          <Modal job_id={props.job_id} />
+          :
+          <FlatButton label="Save Post" onClick={props.saveJob} /> 
+        }
       </CardActions>
     </CardHeader>
   </Card>
