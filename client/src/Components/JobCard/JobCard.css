@@ -1,0 +1,5 @@
+.main-cards {
+	::-webkit-scrollbar { 
+    display: none; 
+	}
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 import Jobs from '../../jobTitles.js';
 import RaisedButton from 'material-ui/RaisedButton';
+import './Title.css';
 
 const menuProps = {
   desktop: true,
@@ -9,7 +10,7 @@ const menuProps = {
 };
 
 const JobSearch = (props) => (
-      <div>
+      <div className='title-container'>
         <AutoComplete
           hintText="Job Title"
           searchText={props.title}
@@ -17,11 +18,12 @@ const JobSearch = (props) => (
           dataSource={Jobs}
           menuProps={menuProps}
           style={{
-            backgroundColor: '#666',
+            backgroundColor: '#555',
             borderRadius: '5px',
             paddingLeft: '10px',
             paddingRight: '10px',
             marginLeft: '10px',
+            boxShadow: '0px 0px 20px 1px #111 inset'
           }}
           filter={AutoComplete.caseInsensitiveFilter}
           inputStyle={{
@@ -36,11 +38,12 @@ const JobSearch = (props) => (
           searchText={props.location}
           onUpdateInput={props.locationText}
           style={{
-            backgroundColor: '#666',
+            backgroundColor: '#555',
             borderRadius: '5px',
             paddingLeft: '10px',
             paddingRight: '10px',
-            marginLeft: '10px'
+            marginLeft: '10px',
+            boxShadow: '0px 0px 20px 1px #111 inset'
           }}
           inputStyle={{
             color: '#fff',
@@ -51,10 +54,11 @@ const JobSearch = (props) => (
           label="Submit"
           style={{
             marginLeft: '20px',
-            borderRadius: '10px'
+            borderRadius: '10px',
           }}
           onClick={props.getAllJobs}
-          primary
+          labelColor='white'
+          backgroundColor='#444'
         />
       </div>
 )
