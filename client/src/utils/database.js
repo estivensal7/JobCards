@@ -25,5 +25,9 @@ export default {
 	//Get saved jobs by user
 	getSavedJobs: (id) => {
 		return axios.get(`/api/getSavedJobs/${id}`);
+	},
+
+	getNotes: (userId, jobId) => {
+		return axios.get(`/api/getNotes/${userId}/${jobId}`);
 	}
 }

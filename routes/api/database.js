@@ -20,4 +20,7 @@ router.route("/saveJob")
 router.route("/getSavedJobs/:id")
 	.get(databaseController.getSavedJobs);	
 
+router.route("/getNotes/:userId/:jobId")
+	.get(databaseController.getNotes);
+
 module.exports = router;

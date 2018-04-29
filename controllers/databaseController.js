@@ -28,6 +28,7 @@ module.exports = {
 		})
 	},
 
+	// Save job pointing to the user's ID
 	saveJob: function(req, res) {
 		db.Saved_Jobs.create({
 			title: req.body.title,
@@ -46,6 +47,19 @@ module.exports = {
 			attributes: ["job_id", "title", "link", "company"],
 			where: {
 				user_id: req.params.id
+			}
+		})
+		.then(data => 
+			res.json(data));
+	},
+
+	// Get all notes for the user's saved job posting
+	getNotes: function(req, res) {
+		db.Notes.findAll({
+			attributes: ["notes_id", "message"],
+			where: {
+				user_id: req.params.userId,
+				job_id: req.params.jobId
 			}
 		})
 		.then(data => 
