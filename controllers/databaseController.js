@@ -5,13 +5,32 @@ const db = require("../models");
 module.exports = {
 	// Creates new users
 	newUser: function(req, res) {
-		db.Users.create({
-			username: req.body.username,
-			password: req.body.password
+		const username = req.body.username;
+		const password = req.body.password;
+
+		// Checks if username already exists in database
+		db.Users.findOne({
+			attributes: ["username"],
+			where: {
+				username: username
+			}
 		})
 		.then(data => {
-			res.json(data);
-		})
+			// if no data found, create new user
+			if (!data) {
+				db.Users.create({
+					username: username,
+					password: password
+				})
+				.then(data => {
+					res.json(data);
+				})
+			} 
+			// Else, send null
+			else {
+				res.send(null);
+			}
+		});
 	},
 
 	// Retrieves uses based on username and password

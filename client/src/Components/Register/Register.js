@@ -6,7 +6,8 @@ import api from "../../utils";
 export default class Form extends React.Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    errorText: ""
   };
 
   change = e => {
@@ -17,16 +18,26 @@ export default class Form extends React.Component {
   };
 
 
-  onSubmit = () => {
-    api.Database.newUser(this.state.username, this.state.password)
-    .then(data => {
-      api.Database.logIn(data.data.username, data.data.password)
+  onSubmit = () => {    
+    if (this.state.username && this.state.password) {
+      api.Database.newUser(this.state.username, this.state.password)
       .then(data => {
-        console.log(data);
-        localStorage.setItem("username", JSON.stringify(data.data.username));
-        localStorage.setItem("user_id", JSON.stringify(data.data.user_id));
+        if (data.data) {
+          api.Database.logIn(data.data.username, data.data.password)
+          .then(registered => {
+            localStorage.setItem("username", JSON.stringify(registered.data.username));
+            localStorage.setItem("user_id", JSON.stringify(registered.data.user_id));
+            this.setState({ errorText: "" });
+          })
+        }
+        else {
+          this.setState({ errorText: "This username is already taken" });
+        }
       })
-    })
+    }
+    else {
+      this.setState({ errorText: "Please fill out the registration form" });
+    }
   };
 
   render() {
@@ -38,6 +49,7 @@ export default class Form extends React.Component {
           floatingLabelText="Username"
           value={this.state.username}
           onChange={e => this.change(e)}
+          errorText={this.state.errorText}
           floatingLabelFixed
           style={{
             marginLeft: '175px',
