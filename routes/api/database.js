@@ -29,4 +29,7 @@ router.route("/addNewNote")
 router.route("/deleteNote/:id")
 	.delete(databaseController.deleteNote);
 
+router.route("/removeSavedJob/:userId/:jobId")
+	.delete(databaseController.removeSavedJob);
+
 module.exports = router;

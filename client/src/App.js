@@ -5,11 +5,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Cards from './Components/Cards';
 import JobSearch from './Components/Title';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import RegisterForm from './Components/Register';
 import api from "./utils";
-import RaisedButton from 'material-ui/RaisedButton';
 import JobCard from "./Components/JobCard";
-import Login from './Components/Login';
 import indeedLogo from "./img/indeed.png"
 import diceLogo from "./img/dice.png";
 import stackOverflowLogo from "./img/stackoverflow.png";

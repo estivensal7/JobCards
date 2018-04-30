@@ -84,5 +84,24 @@ module.exports = {
 		})
 		.then(data =>
 			res.json(data));
+	},
+
+	removeSavedJob: function(req, res) {
+		db.Notes.destroy({
+			where: {
+				job_id: req.params.jobId,
+				user_id: req.params.userId
+			}
+		})
+		.then(data => {
+			db.Saved_Jobs.destroy({
+				where: {
+					user_id: req.params.userId,
+					job_id: req.params.jobId
+				}
+			})
+			.then(deleted => 
+				res.json(deleted));
+		});
 	}
 }

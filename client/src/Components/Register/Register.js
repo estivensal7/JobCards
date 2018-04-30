@@ -18,7 +18,15 @@ export default class Form extends React.Component {
 
 
   onSubmit = () => {
-    api.Database.newUser(this.state.username, this.state.password);
+    api.Database.newUser(this.state.username, this.state.password)
+    .then(data => {
+      api.Database.logIn(data.data.username, data.data.password)
+      .then(data => {
+        console.log(data);
+        localStorage.setItem("username", JSON.stringify(data.data.username));
+        localStorage.setItem("user_id", JSON.stringify(data.data.user_id));
+      })
+    })
   };
 
   render() {
