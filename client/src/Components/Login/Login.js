@@ -43,7 +43,15 @@ export default class Login extends React.Component {
           value={this.state.username}
           onChange={e => this.change(e)}
           floatingLabelFixed
-          style={{marginLeft: '175px'}}
+          style={{
+            marginLeft: '175px',
+            backgroundColor: '#ddd',
+            borderRadius: '5px',
+            paddingLeft: '10px',
+            paddingRight: '25px',
+            marginTop: '20px',
+            boxShadow: '0px 0px 20px 1px #111'
+          }}
         />
         <br />
         <TextField
@@ -54,14 +62,28 @@ export default class Login extends React.Component {
           onChange={e => this.change(e)}
           type="password"
           floatingLabelFixed
-          style={{marginLeft: '175px'}}
+          style={{
+            marginLeft: '175px',
+            backgroundColor: '#ddd',
+            borderRadius: '5px',
+            paddingLeft: '10px',
+            paddingRight: '25px',
+            marginTop: '20px',
+            boxShadow: '0px 0px 20px 1px #111'
+          }}
         />
         <br />
         
         <RaisedButton 
           label="Login" 
           onClick={e => this.onSubmit(e)} 
-          primary style={{marginLeft: '260px'}}/>
+          style={{
+            marginLeft: '260px',
+            marginTop: '20px',
+            boxShadow: '0px 0px 20px 1px #111'
+          }}
+          backgroundColor={'#bbb'}
+        />
         
       </form>
     );

@@ -98,12 +98,14 @@ export default class Sidebar extends React.Component {
             width={600} 
             openSecondary={true} 
             open={this.state.open}
+            containerStyle={{backgroundImage: 'url(http://il9.picdn.net/shutterstock/videos/13505777/thumb/1.jpg)'}}
           >
             <AppBar 
               title="Profile" 
               onLeftIconButtonClick={this.handleClose}
               iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-              style={{ backgroundColor: '#009E9EFF'}}
+              style={{ backgroundColor: '#000'}}
+
             >
               <IconMenu
                 iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
@@ -122,12 +124,22 @@ export default class Sidebar extends React.Component {
                   onChange={this.handleChange}
                   className='tabs-container'
                 >
-                  <Tab label="Log In" value="Login" className='tab'>
+                  <Tab 
+                    label="Log In" 
+                    value="Login" 
+                    className='tab' 
+                    style={{backgroundColor: '#bbb'}}
+                  >
                     <div>
                         <Login />
                     </div>
                   </Tab>
-                  <Tab label="Sign-Up" value="Register" className='tab'>
+                  <Tab 
+                    label="Sign-Up" 
+                    value="Register" 
+                    className='tab'
+                    style={{backgroundColor: '#bbb'}}
+                  >
                     <div>
                         <RegisterForm />
                     </div>
@@ -135,9 +147,11 @@ export default class Sidebar extends React.Component {
                 </Tabs> 
               :
                 <div>
-                  <h1>Hello! {localStorage.getItem("username").replace(/"/g, "") }
+                  <h1>Hello {localStorage.getItem("username").replace(/"/g, "") }!
                   </h1>
-                  <button onClick={this.getSavedJobs}>Get my jobs</button>
+                  <button onClick={this.getSavedJobs} className='get-saved-jobs-button'>
+                    Saved Jobs
+                  </button>
                   <div>
                     {this.state.jobs.map((job, i) => {
                     return <JobCard 
