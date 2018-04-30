@@ -1,3 +1,12 @@
 .tab {
 	margin-left: 40px;
 }
+
+.get-saved-jobs-button {
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
+	background-color: #111;
+	color: #fff;
+}
+

@@ -31,7 +31,15 @@ export default class Form extends React.Component {
           value={this.state.username}
           onChange={e => this.change(e)}
           floatingLabelFixed
-          style={{marginLeft: '175px'}}
+          style={{
+            marginLeft: '175px',
+            backgroundColor: '#ddd',
+            borderRadius: '5px',
+            paddingLeft: '10px',
+            paddingRight: '25px',
+            marginTop: '20px',
+            boxShadow: '0px 0px 20px 1px #111'
+          }}
         />
         <br />
         <TextField
@@ -42,14 +50,27 @@ export default class Form extends React.Component {
           onChange={e => this.change(e)}
           type="password"
           floatingLabelFixed
-          style={{marginLeft: '175px'}}
+          style={{
+            marginLeft: '175px',
+            backgroundColor: '#ddd',
+            borderRadius: '5px',
+            paddingLeft: '10px',
+            paddingRight: '25px',
+            marginTop: '20px',
+            boxShadow: '0px 0px 20px 1px #111'
+        }}
         />
         <br />
         <RaisedButton 
           label="Create Account" 
           onClick={e => this.onSubmit(e)} 
-          style={{marginLeft: '223px'}}
-          primary />
+          style={{
+            marginLeft: '223px',
+            marginTop: '20px',
+            boxShadow: '0px 0px 20px 1px #111'
+          }}
+          backgroundColor={'#bbb'}
+        />
       </form>
     );
   }
