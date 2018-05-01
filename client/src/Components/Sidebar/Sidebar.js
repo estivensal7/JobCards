@@ -98,6 +98,9 @@ export default class Sidebar extends React.Component {
                             iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
                             anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                             targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                            iconStyle={{
+                              color: '#fff'
+                            }}
                           >
                             <MenuItem primaryText="Send feedback" />
                             <MenuItem primaryText="Sign out" onClick={this.logOut} />
