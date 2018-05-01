@@ -4,11 +4,20 @@ import RaisedButton from "material-ui/RaisedButton";
 import api from "../../utils";
 
 export default class Form extends React.Component {
-  state = {
-    username: "",
-    password: "",
-    errorText: ""
-  };
+  
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      username: "",
+      password: "",
+      errorText: "",
+      handleClose: props.handleClose,
+      handleToggle: props.handleToggle,
+      handleSavedJobs: props.handleSavedJobs
+    };
+  }
+
 
   change = e => {
     // this.props.onChange({ [e.target.name]: e.target.value });
@@ -28,6 +37,9 @@ export default class Form extends React.Component {
             localStorage.setItem("username", JSON.stringify(registered.data.username));
             localStorage.setItem("user_id", JSON.stringify(registered.data.user_id));
             this.setState({ errorText: "" });
+            this.state.handleClose();
+            this.state.handleToggle();
+            this.state.handleSavedJobs();
           })
         }
         else {
