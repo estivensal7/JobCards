@@ -26,7 +26,10 @@ const JobCard = (props) => (
       <CardActions>
         <FlatButton label="Link" href={props.link} target="_blank"/>
         { props.job_id ?
+          <div>
+          <FlatButton label="Remove" onClick={props.removeSavedJob} />
           <Modal job_id={props.job_id} />
+          </div>
           :
           <FlatButton label="Save Post" onClick={props.saveJob} /> 
         }

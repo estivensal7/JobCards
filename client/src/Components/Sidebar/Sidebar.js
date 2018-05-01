@@ -1,11 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -18,16 +16,8 @@ import api from "../../utils";
 
 export default class Sidebar extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     open: false,
-  //   };
-  // }
-
   state = {
     open: false,
-    formSelect: "login",
     value: 'Login',
     jobs: []
   };
@@ -39,31 +29,30 @@ export default class Sidebar extends React.Component {
     }
   }
 
-  onChange = updatedValue => {
-    this.setState({
-      fields: {
-        ...this.state.fields,
-        ...updatedValue
-      }
-    });
-  };
-
   handleToggle = () => this.setState({open: !this.state.open});
 
   handleClose = () => this.setState({open: false});
 
-  handleChange = (value) => {
-    this.setState({
-      value: value,
-    });
-  };
+  handleChange = value => { this.setState({ value }) };
  
   getSavedJobs = () => {
     api.Database.getSavedJobs(localStorage.getItem("user_id"))
     .then(data =>  {
         console.log(data.data);
         this.setState({ jobs: data.data })
-        })
+    })
+  };
+
+  logOut = () => {
+    localStorage.clear();
+  };
+
+  removeSavedJob = id => {
+    api.Database.removeSavedJob(localStorage.getItem("user_id"), id)
+    .then(data => {
+        api.Database.getSavedJobs(localStorage.getItem("user_id"))
+        .then(data => this.setState({ jobs: data.data }))
+    })
   }
 
   renderSigningUpOrLoggingIn() {
@@ -75,98 +64,96 @@ export default class Sidebar extends React.Component {
       return <RegisterForm />;
     }
   };
-
-  handleFormChange = formState => {
-    this.setState({formSelect: formState})
-  }
   
   render() {
-    return (
-        <div>
-          <RaisedButton
-            label="Profile"
-            onClick={this.handleToggle}
-            style={{
-              float: 'right',
-              borderRadius: '5px',
-            }}
-            backgroundColor='#444'
-            labelColor='#fff'
-          />
-          <Drawer 
-            docked={false}
-            width={600} 
-            openSecondary={true} 
-            open={this.state.open}
-            containerStyle={{backgroundImage: 'url(http://il9.picdn.net/shutterstock/videos/13505777/thumb/1.jpg)'}}
-          >
-            <AppBar 
-              title="Profile" 
-              onLeftIconButtonClick={this.handleClose}
-              iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-              style={{ backgroundColor: '#000'}}
-
-            >
-              <IconMenu
-                iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-                anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-                targetOrigin={{horizontal: 'right', vertical: 'top'}}
-              >
-                <MenuItem primaryText="Send feedback" />
-                <MenuItem primaryText="Sign out" />
-              </IconMenu>
-
-            </AppBar>
-            {
-              !localStorage.getItem("user_id") ?              
-                <Tabs
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                  className='tabs-container'
-                >
-                  <Tab 
-                    label="Log In" 
-                    value="Login" 
-                    className='tab' 
-                    style={{backgroundColor: '#bbb'}}
+        return (
+            <div>
+              <RaisedButton
+                label="Profile"
+                onClick={this.handleToggle}
+                style={{
+                  float: 'right',
+                  borderRadius: '5px',
+                }}
+                backgroundColor='#444'
+                labelColor='#fff'
+              />
+                <Drawer 
+                    docked={false}
+                    width={600} 
+                    openSecondary={true} 
+                    open={this.state.open}
+                    containerStyle={
+                        {backgroundImage: 'url(http://il9.picdn.net/shutterstock/videos/13505777/thumb/1.jpg)'}
+                    }
                   >
-                    <div>
-                        <Login />
-                    </div>
-                  </Tab>
-                  <Tab 
-                    label="Sign-Up" 
-                    value="Register" 
-                    className='tab'
-                    style={{backgroundColor: '#bbb'}}
-                  >
-                    <div>
-                        <RegisterForm />
-                    </div>
-                  </Tab>
-                </Tabs> 
-              :
-                <div>
-                  <h1>Hello {localStorage.getItem("username").replace(/"/g, "") }!
-                  </h1>
-                  <button onClick={this.getSavedJobs} className='get-saved-jobs-button'>
-                    Saved Jobs
-                  </button>
-                  <div>
-                    {this.state.jobs.map((job, i) => {
-                    return <JobCard 
-                      key={i}
-                      job_id={job.job_id}
-                      title={job.title}
-                      company={job.company} 
-                      link={job.link}
-                      />
-                    })}
-                  </div>
-                </div>
-            }
-          </Drawer>
-        </div>
-    );
-  }
+                    <AppBar 
+                      title="Profile" 
+                      onLeftIconButtonClick={this.handleClose}
+                      iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+                      style={{ backgroundColor: '#000'}}
+
+                    >
+                        <IconMenu
+                            iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+                            anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+                            targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                          >
+                            <MenuItem primaryText="Send feedback" />
+                            <MenuItem primaryText="Sign out" onClick={this.logOut} />
+                        </IconMenu>
+                    </AppBar>
+                    {
+                      !localStorage.getItem("user_id") ?              
+                        <Tabs
+                          value={this.state.value}
+                          onChange={this.handleChange}
+                          className='tabs-container'
+                        >
+                          <Tab 
+                            label="Log In" 
+                            value="Login" 
+                            className='tab' 
+                            style={{backgroundColor: '#bbb'}}
+                          >
+                            <div>
+                                <Login />
+                            </div>
+                          </Tab>
+                          <Tab 
+                            label="Sign-Up" 
+                            value="Register" 
+                            className='tab'
+                            style={{backgroundColor: '#bbb'}}
+                          >
+                            <div>
+                                <RegisterForm />
+                            </div>
+                          </Tab>
+                        </Tabs> 
+                      :
+                        <div>
+                          <h1>Hello {localStorage.getItem("username").replace(/"/g, "") }!
+                          </h1>
+                          <button onClick={this.getSavedJobs} className='get-saved-jobs-button'>
+                            Saved Jobs
+                          </button>
+                          <div>
+                            {this.state.jobs.map((job, i) => {
+                            return <JobCard 
+                              key={i}
+                              job_id={job.job_id}
+                              title={job.title}
+                              company={job.company} 
+                              link={job.link}
+                              removeSavedJob={() => this.removeSavedJob(job.job_id)}
+                              />
+                            })}
+                          </div>
+                        </div>
+                    }
+                </Drawer>
+            </div>
+        );
+    }
 }

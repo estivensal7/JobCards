@@ -40,5 +40,9 @@ export default {
 
 	deleteNote: id => {
 		return axios.delete(`/api/deleteNote/${id}` )
+	},
+
+	removeSavedJob: (userId, jobId) => {
+		return axios.delete(`/api/removeSavedJob/${userId}/${jobId}`)
 	}
 }

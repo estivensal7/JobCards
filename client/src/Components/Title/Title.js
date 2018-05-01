@@ -57,7 +57,7 @@ const JobSearch = (props) => (
             borderRadius: '10px',
           }}
           onClick={props.getAllJobs}
-          labelColor='white'
+          labelColor='#fff'
           backgroundColor='#444'
         />
       </div>

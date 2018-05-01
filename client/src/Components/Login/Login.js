@@ -7,6 +7,7 @@ export default class Login extends React.Component {
   state = {
     username: "",
     password: "",
+    errorText: ""
   };
 
   change = e => {
@@ -19,12 +20,22 @@ export default class Login extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     
-    api.Database.logIn(this.state.username, this.state.password)
-    .then(data => {
-      console.log(data);
-      localStorage.setItem("username", JSON.stringify(data.data.username));
-      localStorage.setItem("user_id", JSON.stringify(data.data.user_id));
-    })
+    if (this.state.username && this.state.password) {
+      api.Database.logIn(this.state.username, this.state.password)
+      .then(data => {
+        if (data.data) {
+          localStorage.setItem("username", JSON.stringify(data.data.username));
+          localStorage.setItem("user_id", JSON.stringify(data.data.user_id));
+          this.setState({ errorText: "" }); 
+        }
+        else {
+          this.setState({ errorText: "Wrong Username or password" });
+        }
+      })
+    }
+    else {
+      this.setState({ errorText: "Please fill out the sign in form" });
+    }
 
     this.setState({
       username: "",
@@ -42,6 +53,7 @@ export default class Login extends React.Component {
           floatingLabelText="Username"
           value={this.state.username}
           onChange={e => this.change(e)}
+          errorText={this.state.errorText}
           floatingLabelFixed
           style={{
             marginLeft: '175px',
