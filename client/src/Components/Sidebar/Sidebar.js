@@ -24,8 +24,7 @@ export default class Sidebar extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem("user_id")) {
-      api.Database.getSavedJobs(localStorage.getItem("user_id"))
-      .then(data => this.setState({ jobs: data.data }))
+      this.getSavedJobs();
     }
   }
 
@@ -37,9 +36,11 @@ export default class Sidebar extends React.Component {
  
   getSavedJobs = () => {
     api.Database.getSavedJobs(localStorage.getItem("user_id"))
-    .then(data =>  {
+    .then(data => {
+      if (data.data) {
         console.log(data.data);
         this.setState({ jobs: data.data })
+      }
     })
   };
 
@@ -103,7 +104,7 @@ export default class Sidebar extends React.Component {
                             }}
                           >
                             <MenuItem primaryText="Send feedback" />
-                            <MenuItem primaryText="Sign out" onClick={this.logOut} />
+                            <MenuItem primaryText="Sign out" onClick={()=>{this.logOut(); this.handleClose()}} />
                         </IconMenu>
                     </AppBar>
                     {
@@ -120,7 +121,11 @@ export default class Sidebar extends React.Component {
                             style={{backgroundColor: '#bbb'}}
                           >
                             <div>
-                                <Login />
+                                <Login 
+                                  handleClose={this.handleClose}
+                                  handleToggle={this.handleToggle}
+                                  handleSavedJobs={this.getSavedJobs}
+                                />
                             </div>
                           </Tab>
                           <Tab 
@@ -130,7 +135,11 @@ export default class Sidebar extends React.Component {
                             style={{backgroundColor: '#bbb'}}
                           >
                             <div>
-                                <RegisterForm />
+                                <RegisterForm 
+                                  handleClose={this.handleClose}
+                                  handleToggle={this.handleToggle}
+                                  handleSavedJobs={this.getSavedJobs}
+                                />
                             </div>
                           </Tab>
                         </Tabs> 

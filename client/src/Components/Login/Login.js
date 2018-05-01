@@ -4,11 +4,20 @@ import RaisedButton from "material-ui/RaisedButton";
 import api from "../../utils";
 
 export default class Login extends React.Component {
-  state = {
-    username: "",
-    password: "",
-    errorText: ""
-  };
+  
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      username: "",
+      password: "",
+      errorText: "",
+      handleClose: props.handleClose,
+      handleToggle: props.handleToggle,
+      handleSavedJobs: props.handleSavedJobs
+    };
+  }
+
 
   change = e => {
     // this.props.onChange({ [e.target.name]: e.target.value });
@@ -26,7 +35,10 @@ export default class Login extends React.Component {
         if (data.data) {
           localStorage.setItem("username", JSON.stringify(data.data.username));
           localStorage.setItem("user_id", JSON.stringify(data.data.user_id));
-          this.setState({ errorText: "" }); 
+          this.setState({ errorText: "" });
+          this.state.handleClose(); 
+          this.state.handleToggle();
+          this.state.handleSavedJobs();
         }
         else {
           this.setState({ errorText: "Wrong Username or password" });
