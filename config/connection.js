@@ -15,7 +15,7 @@ else {
 	sequelize = new Sequelize("project3", "root", "root", {
 		host: "localhost",
 		dialect: "mysql",
-		port: 8889,
+		port: 3306,
 		pool: {
 			max: 5,
 			min: 0,
