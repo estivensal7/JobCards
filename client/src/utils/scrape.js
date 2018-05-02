@@ -19,5 +19,9 @@ export default {
 	// calls for stackOverFlow jobs
 	stackOverflowJobs: (query, location) => {
 		return axios.get(`/api/stackOverflow/${query}/${location}`)
+	},
+
+	simplyHiredJobs: (query, location) => {
+		return axios.get(`/api/simplyHired/${query}/${location}`)
 	}
 };

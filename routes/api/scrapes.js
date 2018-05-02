@@ -16,4 +16,7 @@ router.route("/dice/:query/:location")
 router.route("/stackOverflow/:query/:location")
 	.get(scrapeController.stackOverflowJobs);
 
+router.route("/simplyHired/:query/:location")
+	.get(scrapeController.simplyHiredJobs);
+
 module.exports = router;
