@@ -16,6 +16,6 @@ const Saved_Jobs = sequelizeInstance.define("saved_jobs", {
 
 Saved_Jobs.belongsTo(Users, {foreignKey: "user_id"});
 
-Saved_Jobs.sync();
+// Saved_Jobs.sync();
 
 module.exports = Saved_Jobs;

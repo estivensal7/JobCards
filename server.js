@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const db = require("./config/connection");
 
 // Set up body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -15,6 +16,9 @@ app.use(express.static("client/build"));
 app.use(routes);
 
 // Open server on PORT
-app.listen(PORT, function() {
-	console.log(`Listening to PORT ${PORT}`)
+db.sync().then(function() {
+	app.listen(PORT, function() {
+		console.log(`Listening to PORT ${PORT}`)
+	})
 })
+	

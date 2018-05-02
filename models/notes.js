@@ -16,6 +16,6 @@ const Notes = sequelizeInstance.define("notes", {
 Notes.belongsTo(Users, {foreignKey: "user_id"});
 Notes.belongsTo(Saved_Jobs, {foreignKey: "job_id"});
 
-Notes.sync();
+// Notes.sync();
 
 module.exports = Notes;
