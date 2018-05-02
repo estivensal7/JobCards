@@ -11,9 +11,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // sets static folder
-app.use(express.static("client/build"));
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static("client/build"));
+}
 // Allows for usage of defined routs
 app.use(routes);
+
 
 // Open server on PORT
 db.sync().then(function() {

@@ -2,7 +2,7 @@
 // Create dependencies
 const Sequelize = require("sequelize");
 const env = process.env.NODE_ENV || 'development';
-var config = require('./config.json')[env];
+var config = require(__dirname + '/config.json')[env];
 // Construct variable
 let sequelize;
 
