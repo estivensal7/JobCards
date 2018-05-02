@@ -102,5 +102,30 @@ module.exports = {
 				res.json(jobs);
 			}
 		);
+	},
+
+	simplyHiredJobs: function(req, res) {
+		const query = req.params.query;
+		const location = req.params.location;
+		const newLocation = location.replace(",", "");
+
+		request(`https://www.simplyhired.com/search?q=${query.replace(" ", "+")}&l=${newLocation.split(" ").join("+")}`,
+			function(error, result, html) {
+				const jobs = [];
+				const $ = cheerio.load(html);
+
+				$("div.card.js-job").each(function(i, element) {
+
+					const results = {
+						"title": $(element).find("a.card-link.js-job-link").text(),
+						"link": "https://www.simplyhired.com" + $(element).find("a.card-link.js-job-link").attr("href"),
+						"company": $(element).find("span.jobposting-company").text()
+					}
+					jobs.push(results);
+				})
+				res.json(jobs);
+			}
+		)
 	}
+
 }

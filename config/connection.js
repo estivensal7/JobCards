@@ -2,14 +2,14 @@
 // Create dependencies
 const Sequelize = require("sequelize");
 const env = process.env.NODE_ENV || 'development';
-var config = require('./config.json')[env];
+var config = require(__dirname + '/config.json')[env];
 // Construct variable
 let sequelize;
 
 // Create sequelize connection
 // If deployed on heroku, use JAWSDB database
-if (config.use_env_variable) {
-	sequelize = new Sequelize(process.env[config.use_env_variable]);
+if (process.env.JAWSDB_URL) {
+	sequelize = new Sequelize(process.env.JAWSDB_URL);
 }
 // Use local host
 else {

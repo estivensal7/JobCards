@@ -9,7 +9,7 @@ import api from "./utils";
 import JobCard from "./Components/JobCard";
 import indeedLogo from "./img/indeed.png"
 import diceLogo from "./img/dice.png";
-import stackOverflowLogo from "./img/stackoverflow.png";
+import simplyHiredLogo from "./img/simplyhired.png";
 
 injectTapEventPlugin();
 
@@ -21,7 +21,7 @@ class App extends Component {
     location: "",
     indeedJobs: [],
     diceJobs: [],
-    stackOverflowJobs: []
+    simplyHiredJobs: []
   }
 
   handleTitleInput = (input) => {
@@ -38,7 +38,7 @@ class App extends Component {
     this.setState({
       indeedJobs: [],
       diceJobs: [],
-      stackOverflowJobs: []
+      simplyHiredJobs: []
     });
 
     api.Scrape.indeedJobs(this.state.title, this.state.location)
@@ -51,9 +51,9 @@ class App extends Component {
       this.setState( { diceJobs: data.data } ) 
     })
 
-    api.Scrape.stackOverflowJobs(this.state.title, this.state.location)
+    api.Scrape.simplyHiredJobs(this.state.title, this.state.location)
     .then(data => { 
-      this.setState( { stackOverflowJobs: data.data } ) 
+      this.setState( { simplyHiredJobs: data.data } ) 
     })
   };
 
@@ -109,8 +109,8 @@ class App extends Component {
                 saveJob={() => this.saveJob(jobs.title, jobs.link, jobs.company)}/>
             })}
           </Cards>
-          <Cards title="Stack Overflow" avatar={stackOverflowLogo}>
-            {this.state.stackOverflowJobs.map((jobs, i) => {
+          <Cards title="SimplyHired" avatar={simplyHiredLogo}>
+            {this.state.simplyHiredJobs.map((jobs, i) => {
               return <JobCard 
                 key={i} 
                 title={jobs.title} 
