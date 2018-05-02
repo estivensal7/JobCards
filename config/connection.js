@@ -1,8 +1,8 @@
-// This file connects to MySQL using Sequelize
+	// This file connects to MySQL using Sequelize
 // Create dependencies
 const Sequelize = require("sequelize");
 const env = process.env.NODE_ENV || 'development';
-var config = require(__dirname + './config.json')[env];
+var config = require('./config.json')[env];
 // Construct variable
 let sequelize;
 
