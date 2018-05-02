@@ -1,8 +1,8 @@
 {
   "main.css": "static/css/main.31c7a881.css",
   "main.css.map": "static/css/main.31c7a881.css.map",
-  "main.js": "static/js/main.17fb720e.js",
-  "main.js.map": "static/js/main.17fb720e.js.map",
+  "main.js": "static/js/main.520d4a53.js",
+  "main.js.map": "static/js/main.520d4a53.js.map",
   "static\\media\\background3.jpg": "static/media/background3.c070d79e.jpg",
   "static\\media\\dice.png": "static/media/dice.11fa1346.png",
   "static\\media\\fontawesome-webfont.eot": "static/media/fontawesome-webfont.674f50d2.eot",
@@ -10,5 +10,6 @@
   "static\\media\\fontawesome-webfont.ttf?v=4.7.0": "static/media/fontawesome-webfont.b06871f2.ttf",
   "static\\media\\fontawesome-webfont.woff2?v=4.7.0": "static/media/fontawesome-webfont.af7ae505.woff2",
   "static\\media\\fontawesome-webfont.woff?v=4.7.0": "static/media/fontawesome-webfont.fee66e71.woff",
-  "static\\media\\indeed.png": "static/media/indeed.e46200ea.png"
+  "static\\media\\indeed.png": "static/media/indeed.e46200ea.png",
+  "static\\media\\simplyhired.png": "static/media/simplyhired.5216dc15.png"
 }
